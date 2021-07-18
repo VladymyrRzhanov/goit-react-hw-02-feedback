@@ -1,0 +1,23 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  padding: 25px;
+  box-shadow: 13px 13px 25px -5px rgba(34, 60, 80, 0.3);
+}
+
+.item:not(:first-child) {
+  margin-left: 30px;
+}
+
+.itemPercent {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.total {
+  font-weight: bold;
+}

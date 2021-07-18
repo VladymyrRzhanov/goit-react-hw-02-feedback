@@ -3,7 +3,7 @@ import Section from "../Section";
 import Statistics from "./Statistics";
 import FeedbackOptions from "./FeedbackOptions";
 import Notification from "./Notification";
-
+import PropTypes from 'prop-types';
 
 export default class Feedback extends Component {
     static defaultProps = {
@@ -11,27 +11,33 @@ export default class Feedback extends Component {
         initialValueNeutral: 0,
         initialValueBad: 0,
     };
-
+    static props = {
+        good: PropTypes.number,
+        neutral: PropTypes.number,
+        bad: PropTypes.number,
+    }
+    
     state = {
         good: this.props.initialValueGood,
         neutral: this.props.initialValueNeutral,
         bad: this.props.initialValueBad,
     };
     
-    addFeedback = (nameFeedback) => {
+    addFeedback = e => {
+        const feedbackName = e.target.textContent;
 		this.setState((prevState) => ({
-			[nameFeedback]: prevState[nameFeedback] + 1
+			[feedbackName]: prevState[feedbackName] + 1
 		}));
 	};
 
     countTotalFeedback = () => {
         const { good, neutral, bad } = this.state;
-        return (good + neutral + bad)
+        return (good + neutral + bad);
     };
     
 
     countPositiveFeedbackPercentage = () => (
-            Math.round((this.state.good / this.countTotalFeedback()) * 100)
+        Math.round((this.state.good / this.countTotalFeedback()) * 100)
     );
     
     render() {
@@ -39,7 +45,7 @@ export default class Feedback extends Component {
         return (
             <>
                 <Section title="Please leave feedback">
-                        <FeedbackOptions
+                    <FeedbackOptions
                         options={Object.keys(this.state)}
                         onLeaveFeedback={this.addFeedback}
                     />
@@ -47,7 +53,7 @@ export default class Feedback extends Component {
                 <Section
                     title="Statistics"
                 >
-                    {this.countTotalFeedback() > 0 
+                    {this.countTotalFeedback() > 0
                         ? <Statistics
                             good={good}
                             neutral={neutral}
