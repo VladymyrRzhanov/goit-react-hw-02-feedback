@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Section from "../Section";
-import Statistics from "./Statistics";
-import FeedbackOptions from "./FeedbackOptions";
-import Notification from "./Notification";
+import Statistics from "../Statistics";
+import FeedbackOptions from "../FeedbackOptions";
+import Notification from "../Notification";
 import PropTypes from 'prop-types';
+import s from "./Feedback.module.css";
 
 export default class Feedback extends Component {
     static defaultProps = {
@@ -44,15 +45,15 @@ export default class Feedback extends Component {
         const { good, neutral, bad } = this.state;
         return (
             <>
-                <Section title="Please leave feedback">
+                <Section>
+                    <h1 className={s.mainTitle}>Please leave feedback</h1>
                     <FeedbackOptions
                         options={Object.keys(this.state)}
                         onLeaveFeedback={this.addFeedback}
                     />
                 </Section>
-                <Section
-                    title="Statistics"
-                >
+                <Section>
+                    <h2 className={s.title}>Statistics</h2>
                     {this.countTotalFeedback() > 0
                         ? <Statistics
                             good={good}
