@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Section from '../Section';
 import Statistics from '../Statistics';
 import FeedbackOptions from '../FeedbackOptions';
@@ -7,21 +6,10 @@ import Notification from '../Notification';
 import s from './App.module.css';
 
 export default class App extends Component {
-  static defaultProps = {
-    initialValueGood: 0,
-    initialValueNeutral: 0,
-    initialValueBad: 0,
-  };
-  static props = {
-    good: PropTypes.number,
-    neutral: PropTypes.number,
-    bad: PropTypes.number,
-  };
-
   state = {
-    good: this.props.initialValueGood,
-    neutral: this.props.initialValueNeutral,
-    bad: this.props.initialValueBad,
+    good: 0,
+    neutral: 0,
+    bad: 0,
   };
 
   addFeedback = e => {
